@@ -1,0 +1,102 @@
+package com.example.blog.entity;
+
+import java.time.LocalDateTime;
+import java.util.List;
+
+import org.hibernate.annotations.CreationTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name="post")
+public class PostEntity {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	@Column(name="title")
+	private String title;
+	@Column(name="content")
+	private String content;
+	@Column(name="author_id")
+	private int authorId;
+	@CreationTimestamp
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'")
+	@Column(name = "created_at")
+	private LocalDateTime createdAt;
+    @OneToMany(mappedBy = "post",cascade = CascadeType.ALL)
+    @JsonIgnore 
+	private List<CommentEntity> comments;
+    public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+	public int getAuthorId() {
+		return authorId;
+	}
+	public void setAuthorId(int authorId) {
+		this.authorId = authorId;
+	}
+	public LocalDateTime getCreatedAt() {
+		return createdAt;
+	}
+	public void setCreatedAt(LocalDateTime createdAt) {
+		this.createdAt = createdAt;
+	}
+	public List<CommentEntity> getComments() {
+		return comments;
+	}
+	public void setComments(List<CommentEntity> comments) {
+		this.comments = comments;
+	}
+	public PostEntity(String title, String content, int authorId, LocalDateTime createdAt,
+			List<CommentEntity> comments) {
+		super();
+		this.title = title;
+		this.content = content;
+		this.authorId = authorId;
+		this.createdAt = createdAt;
+		this.comments = comments;
+	}
+	public PostEntity() {
+		super();
+	}
+	public PostEntity(int id, String title, String content, int authorId, LocalDateTime createdAt,
+			List<CommentEntity> comments) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.content = content;
+		this.authorId = authorId;
+		this.createdAt = createdAt;
+		this.comments = comments;
+	}
+	
+	
+	
+    
+}

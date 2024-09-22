@@ -1,0 +1,52 @@
+package com.example.app.jwt;
+
+import java.io.IOException;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.web.filter.OncePerRequestFilter;
+
+import com.example.app.service.UserService;
+
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+public class JwtValidationFilter extends OncePerRequestFilter {
+	
+	private JwtService jwtService;
+	private UserService userService;
+	
+	@Autowired
+	public JwtValidationFilter(JwtService jwtService,UserService userService) {
+		this.jwtService=jwtService;
+		this.userService=userService;
+	}
+
+	@Override
+	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+			throws ServletException, IOException {
+		 String authHeader=request.getHeader("Authorizantion");
+		 String userName=null;
+		 String jwt=null;
+		 if(authHeader!=null && authHeader.startsWith("Bearer" )) {
+			 jwt=authHeader.substring(7);
+			 userName=jwtService.getUserName(jwt);
+		 
+		 if(userName!=null && SecurityContextHolder.getContext().getAuthentication()==null)
+		 {
+			 if(jwtService.isTokenValid(userName, jwt)) {
+			UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken=new UsernamePasswordAuthenticationToken(userName,null,null);
+			SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+		 }
+		 }
+		 }
+		 filterChain.doFilter(request, response);
+		
+	}
+	
+
+}

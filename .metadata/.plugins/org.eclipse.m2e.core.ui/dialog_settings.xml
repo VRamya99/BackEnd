@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="MavenProjectImportWizardPage">
+		<list key="rootDirectory">
+			<item value="C:\Users\vramy\OneDrive\Documents\cognizant project\ClinicUser"/>
+			<item value="C:\Users\vramy\OneDrive\Documents\securityLearning\securityLearning"/>
+			<item value="C:\Users\vramy\Downloads\LoginAndRegistration"/>
+			<item value="C:\Users\vramy\OneDrive\Documents\Full Stack Developer Challenge\E-Commerce  Application"/>
+			<item value="C:\Users\vramy\OneDrive\Documents\Backend Developer Quetions\User Management System"/>
+			<item value="C:\Users\vramy\OneDrive\Documents\Backend Developer Quetions\Order Processing System"/>
+			<item value="C:\Users\vramy\OneDrive\Documents\Backend Developer Quetions\Inventory Management System"/>
+			<item value="C:\Users\vramy\OneDrive\Documents\Backend Developer Quetions\Blog Platform"/>
+			<item value="C:\Users\vramy\OneDrive\Documents\Backend Developer Quetions\order"/>
+			<item value="C:\Users\vramy\OneDrive\Documents\Backend Developer Quetions\user"/>
+			<item value="C:\Users\vramy\OneDrive\Documents\Backend Developer Quetions\demo"/>
+		</list>
+		<list key="projectNameTemplate">
+			<item value="[artifactId]"/>
+			<item value="[artifactId]-TRUNK"/>
+			<item value="[artifactId]-[version]"/>
+			<item value="[groupId].[artifactId]"/>
+			<item value="[groupId].[artifactId]-[version]"/>
+			<item value="[name]"/>
+		</list>
+	</section>
+	<section name="org.eclipse.m2e.core.pom.overview">
+	</section>
+	<section name="org.eclipse.m2e.core.pom.dependencies">
+	</section>
+</section>

@@ -1,0 +1,40 @@
+package com.example.app.jwt;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+@Configuration
+public class SecurityConfig {
+	
+private JwtValidationFilter jwtValidationFilter;
+public SecurityConfig(JwtValidationFilter jwtValidationFilter) {
+	this.jwtValidationFilter=jwtValidationFilter;
+}
+@Bean
+SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception{
+	 http.sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+	 http.csrf(csrf->csrf.disable());
+	 http
+     .authorizeHttpRequests(authorizeRequests ->
+         authorizeRequests
+             .requestMatchers(HttpMethod.DELETE, "/emp/employees/{empId}").hasRole("ADMIN")
+             .requestMatchers(HttpMethod.GET, "/emp/employees/{empId}").hasAnyRole("USER", "ADMIN")
+             .requestMatchers(HttpMethod.GET, "/emp/employees").hasRole("ADMIN")
+             .requestMatchers(HttpMethod.POST, "/emp/authentication").hasAnyRole("ADMIN", "USER")
+             .requestMatchers(HttpMethod.POST, "/emp/employees", "/emp/authentication", "/authority/auth").permitAll()
+             .anyRequest().authenticated()
+     ).addFilterBefore(jwtValidationFilter, UsernamePasswordAuthenticationFilter.class);
+	 http.formLogin(Customizer.withDefaults());
+     http.httpBasic(Customizer.withDefaults());
+     return http.build();
+}
+
+
+
+}

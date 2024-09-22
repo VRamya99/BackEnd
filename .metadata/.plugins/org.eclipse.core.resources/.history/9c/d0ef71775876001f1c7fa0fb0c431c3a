@@ -1,0 +1,18 @@
+package com.example.app.service;
+
+import java.util.List;
+
+import com.example.app.entity.OrderEntity;
+
+public interface OrderService {
+	
+	public String createOrder(OrderEntity order);
+	
+	public List<OrderEntity> getOrders(int userId);
+	
+	public OrderEntity getOrder(int order_id);
+	
+	
+	
+
+}

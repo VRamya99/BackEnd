@@ -1,0 +1,29 @@
+package com.example.blog.service.Impl;
+
+import org.springframework.stereotype.Service;
+
+import com.example.blog.entity.CommentEntity;
+import com.example.blog.entity.PostEntity;
+import com.example.blog.service.BlogService;
+@Service
+public class BlogServiceImpl implements BlogService{
+
+	@Override
+	public String createBlogPost(PostEntity post) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String addComment(CommentEntity comment) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public CommentEntity getComments(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

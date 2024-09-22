@@ -1,0 +1,16 @@
+package com.example.app.service;
+
+import java.math.BigDecimal;
+import java.util.List;
+
+import com.example.app.entity.ProductEntity;
+
+public interface CartService {
+	
+	public String addToCart(int userId,int productId,int quantity);
+	
+	public List<ProductEntity> displayProduct(int user_id);
+	 public BigDecimal calculateTotalPrice(int userId);
+	 public String clearCart(int userId);
+
+}

@@ -1,0 +1,13 @@
+package com.example.app.jwt;
+
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class SecurityConfig {
+	
+private JwtValidationFilter jwtValidationFilter;
+public SecurityConfig(JwtValidationFilter jwtValidationFilter) {
+	this.jwtValidationFilter=jwtValidationFilter;
+}
+
+}

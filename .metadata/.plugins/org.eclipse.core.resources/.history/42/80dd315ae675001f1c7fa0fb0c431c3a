@@ -1,0 +1,37 @@
+package com.example.app.service.impl;
+
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
+import com.example.app.entity.UserEntity;
+import com.example.app.repo.UserRepository;
+import com.example.app.service.UserService;
+@Service
+public class UserServiceImpl implements UserService,UserDetailsService {
+	
+	private UserRepository userRepository;
+	public UserServiceImpl(UserRepository userRepository) {
+		this.userRepository=userRepository;
+	}
+
+	@Override
+	public String registerUser(UserEntity user) {
+		userRepository.save(user);
+		return "User Successfully Registered";
+	}
+
+	@Override
+	public String login(String userName, String password) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

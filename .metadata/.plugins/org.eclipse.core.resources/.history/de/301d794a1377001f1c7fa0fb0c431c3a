@@ -1,0 +1,13 @@
+package com.example.app.service;
+
+import java.util.List;
+
+import com.example.app.entity.ProductEntity;
+
+public interface CartService {
+	
+	public String addToCart(ProductEntity product);
+	
+	public List<ProductEntity> displayProduct(int user_id);
+
+}

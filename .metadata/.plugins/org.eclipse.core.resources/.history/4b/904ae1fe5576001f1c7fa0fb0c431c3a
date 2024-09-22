@@ -1,0 +1,42 @@
+package com.example.app.service.impl;
+
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import com.example.app.entity.OrderEntity;
+import com.example.app.exception.ResourceNotFoundException;
+import com.example.app.repo.OrderRepository;
+import com.example.app.service.OrderService;
+@Service
+public class OrderServiceImpl implements OrderService{
+	
+	private OrderRepository orderRepository;
+	
+	OrderServiceImpl(OrderRepository orderRepository)
+	{
+		this.orderRepository=orderRepository;
+	}
+
+	@Override
+	public String createOrder(OrderEntity order) {
+		order.setStatus("In-Progress");
+		orderRepository.save(order);
+		return "succesfully ordered";
+	}
+
+	@Override
+	public List<OrderEntity> getOrders(int userId) {
+		List<OrderEntity> order=orderRepository.findByUserId(userId);
+		return order;
+		
+	}
+
+	@Override
+	public OrderEntity getOrder(int order_id) {
+		
+		return orderRepository.findById(order_id).orElseThrow(()->new ResourceNotFoundException("Order Not Found with idc"+order_id));
+		
+	}
+
+}

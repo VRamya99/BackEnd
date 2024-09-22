@@ -1,0 +1,11 @@
+package com.example.app.dto;
+
+import java.math.BigDecimal;
+
+public class OrderItemsResponseDto {
+	private int id;
+    private BigDecimal price;
+    private int quantity;
+    
+
+}

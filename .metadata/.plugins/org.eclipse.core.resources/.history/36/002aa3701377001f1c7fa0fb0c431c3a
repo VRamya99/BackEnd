@@ -1,0 +1,9 @@
+package com.example.app.repo;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.example.app.entity.CartEntity;
+
+public interface CartRepository extends JpaRepository<CartEntity, Integer> {
+
+}

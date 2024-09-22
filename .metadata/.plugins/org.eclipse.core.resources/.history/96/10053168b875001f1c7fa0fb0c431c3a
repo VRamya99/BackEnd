@@ -1,0 +1,47 @@
+package com.example.app.service.impl;
+
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.stereotype.Service;
+
+import com.example.app.entity.ProductEntity;
+import com.example.app.exception.ProductNotFoundException;
+import com.example.app.repo.ProductRepository;
+import com.example.app.service.ProductService;
+@Service
+public class ProductServiceImpl implements ProductService{
+	
+	private ProductRepository productRepository;
+	
+	ProductServiceImpl(ProductRepository productRepository)
+	{
+		this.productRepository=productRepository;
+	}
+
+	@Override
+	public String createProduct(ProductEntity product) {
+		productRepository.save(product);
+		
+		return "Created New Product";
+	}
+
+	@Override
+	public String updateProduct(int id, ProductEntity product) {
+	ProductEntity prod=productRepository.findById(id).orElseThrow(()-> new ProductNotFoundException("Product with id "+id+" is Not Found"));
+	}
+
+	@Override
+	public ProductEntity getProduct(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String deleteProduct(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	
+	
+
+}

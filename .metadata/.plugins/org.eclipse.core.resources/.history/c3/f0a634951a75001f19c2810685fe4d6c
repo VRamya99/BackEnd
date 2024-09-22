@@ -1,0 +1,18 @@
+package com.example.blog.controller;
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.blog.service.BlogService;
+
+@RestController
+@RequestMapping("/api")
+public class BlogController {
+	
+	private BlogService blogService;
+	BlogController(BlogService blogService)
+	{
+		this.blogService=blogService;
+	}
+
+}

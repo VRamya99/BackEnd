@@ -1,0 +1,11 @@
+package com.example.app.exception;
+
+import javax.swing.text.html.HTMLDocument.RunElement;
+
+public class ProductNotFoundException extends RuntimeException {
+	public ProductNotFoundException(String message)
+	{
+		super(message);
+	}
+
+}

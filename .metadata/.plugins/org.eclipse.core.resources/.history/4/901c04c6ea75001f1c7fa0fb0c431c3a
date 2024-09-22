@@ -1,0 +1,48 @@
+package com.example.app.jwt;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+
+@Configuration
+public class SecurityConfig {
+	
+private JwtValidationFilter jwtValidationFilter;
+public SecurityConfig(JwtValidationFilter jwtValidationFilter) {
+	this.jwtValidationFilter=jwtValidationFilter;
+}
+@Bean
+SecurityFilterChain defaultSecurityFilterChain(HttpSecurity http) throws Exception{
+	 http.sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+	 http.csrf(csrf->csrf.disable());
+	 http
+     .authorizeHttpRequests(authorizeRequests ->
+     authorizeRequests
+    
+     .requestMatchers(HttpMethod.POST, "/v3/register", "/v3/login").permitAll()
+
+     
+     .requestMatchers(HttpMethod.GET, "/v2/products").authenticated() // Allow authenticated users
+     .requestMatchers(HttpMethod.POST, "/v2/products").hasRole("ADMIN")
+     .requestMatchers(HttpMethod.PUT, "/v2/products/{id}").hasRole("ADMIN")
+     .requestMatchers(HttpMethod.DELETE, "/v2/products/{id}").hasRole("ADMIN")
+
+    
+     .requestMatchers(HttpMethod.POST, "/v1/orders").authenticated()
+     .requestMatchers(HttpMethod.GET, "/v1/orders").authenticated()
+     .requestMatchers(HttpMethod.GET, "v1/orders/{id}").authenticated()
+
+     .anyRequest().authenticated().addFilterBefore(jwtValidationFilter, UsernamePasswordAuthenticationFilter.class);
+	 http.formLogin(Customizer.withDefaults());
+     http.httpBasic(Customizer.withDefaults());
+     return http.build();
+}
+
+
+
+}

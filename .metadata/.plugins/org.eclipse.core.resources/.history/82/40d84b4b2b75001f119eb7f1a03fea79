@@ -1,0 +1,32 @@
+package com.example.blog.dto;
+
+import java.util.List;
+
+import com.example.blog.entity.CommentEntity;
+
+public class PostCommentResponse {
+	
+	private int post_id;
+	List<CommentEntity> comments;
+	public PostCommentResponse(List<CommentEntity> comments) {
+		super();
+		this.comments = comments;
+	}
+	public PostCommentResponse() {
+		super();
+	}
+	public int getPost_id() {
+		return post_id;
+	}
+	public void setPost_id(int post_id) {
+		this.post_id = post_id;
+	}
+	public List<CommentEntity> getComments() {
+		return comments;
+	}
+	public void setComments(List<CommentEntity> comments) {
+		this.comments = comments;
+	}
+	
+
+}

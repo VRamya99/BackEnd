@@ -1,0 +1,31 @@
+package com.example.app.service.impl;
+
+import java.math.BigDecimal;
+import java.util.List;
+
+import com.example.app.entity.ProductEntity;
+import com.example.app.service.CartService;
+
+public class CartServiceImpl implements CartService {
+
+	@Override
+	public String addToCart(int userId, int productId, int quantity) {
+		
+	}
+
+	@Override
+	public List<ProductEntity> displayProduct(int user_id) {
+		
+	}
+
+	@Override
+	public BigDecimal calculateTotalPrice(int userId) {
+		
+	}
+
+	@Override
+	public String clearCart(int userId) {
+		
+	}
+
+}

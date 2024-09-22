@@ -1,0 +1,79 @@
+package com.example.app.dto;
+
+
+import java.math.BigDecimal;
+
+public class CartItemResponse {
+
+    private Integer productId;
+    private String productName;
+    private String productDescription;
+    private BigDecimal productPrice;
+    private Integer quantity;
+    private BigDecimal totalPrice;
+
+   
+    public CartItemResponse() {
+    }
+
+    public CartItemResponse(Integer productId, String productName, String productDescription,
+                            BigDecimal productPrice, Integer quantity, BigDecimal totalPrice) {
+        this.productId = productId;
+        this.productName = productName;
+        this.productDescription = productDescription;
+        this.productPrice = productPrice;
+        this.quantity = quantity;
+        this.totalPrice = totalPrice;
+    }
+
+   
+
+    public Integer getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Integer productId) {
+        this.productId = productId;
+    }
+
+    public String getProductName() {
+        return productName;
+    }
+
+    public void setProductName(String productName) {
+        this.productName = productName;
+    }
+	
+	public String getProductDescription() {
+        return productDescription;
+    }
+
+    public void setProductDescription(String productDescription) {
+        this.productDescription = productDescription;
+    }
+	
+    public BigDecimal getProductPrice() {
+        return productPrice;
+    }
+
+    public void setProductPrice(BigDecimal productPrice) {
+        this.productPrice = productPrice;
+    }
+
+    public Integer getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
+    }
+
+    public BigDecimal getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(BigDecimal totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+}
+

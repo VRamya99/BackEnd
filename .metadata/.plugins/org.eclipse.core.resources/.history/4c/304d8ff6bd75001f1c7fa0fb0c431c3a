@@ -1,0 +1,12 @@
+package com.example.app.service;
+
+import com.example.app.entity.ProductEntity;
+
+public interface ProductService {
+	
+	public String createProduct(ProductEntity product);
+	public String updateProduct(int id,ProductEntity product);
+	public ProductEntity getProduct();
+	public String deleteProduct(int id);
+
+}

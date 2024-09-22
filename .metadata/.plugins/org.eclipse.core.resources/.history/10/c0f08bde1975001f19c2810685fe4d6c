@@ -1,0 +1,45 @@
+package com.example.blog.service.Impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.blog.entity.CommentEntity;
+import com.example.blog.entity.PostEntity;
+import com.example.blog.exception.PostNotFoundException;
+import com.example.blog.repo.CommentRepository;
+import com.example.blog.repo.PostRepository;
+import com.example.blog.service.BlogService;
+@Service
+public class BlogServiceImpl implements BlogService{
+	
+	private PostRepository postRepository;
+	private CommentRepository commentRepository;
+	@Autowired
+	public BlogServiceImpl(PostRepository postRepository,CommentRepository commentRepository) {
+		this.postRepository=postRepository;
+		this.commentRepository=commentRepository;
+	}
+
+	@Override
+	public String createBlogPost(PostEntity post) {
+		postRepository.save(post);
+		return "Successfully created the post";
+	}
+
+	@Override
+	public String addComment(int id,CommentEntity comment) {
+		commentRepository.save(comment);
+		return "Successfully added the comment";
+		
+	}
+
+	@Override
+	public List<CommentEntity> getComments(int id) {
+		PostEntity post=postRepository.findById(id).orElseThrow(()->new PostNotFoundException("post with id "+id+" is not Exists"));
+		
+		
+	}
+
+}

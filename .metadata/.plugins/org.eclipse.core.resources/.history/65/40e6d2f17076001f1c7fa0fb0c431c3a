@@ -1,0 +1,20 @@
+package com.example.app.service;
+
+import java.util.List;
+
+import com.example.app.dto.OrderRequest;
+import com.example.app.dto.OrderResponseDto;
+import com.example.app.entity.OrderEntity;
+
+public interface OrderService {
+	
+	public String createOrder(OrderRequest orderRequest);
+	
+	public List<OrderResponseDto> getOrders(int userId);
+	
+	public OrderEntity getOrder(int order_id);
+	
+	
+	
+
+}
