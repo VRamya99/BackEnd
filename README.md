@@ -1,2 +1,2 @@
 # BackEnd
-contains all java springboot quetions
+contains all java springboot questions
